@@ -13,7 +13,7 @@ def convert_df_in_ohlc(df):
 
 if __name__ == '__main__':
 
-    chart = Chart()
+    chart = Chart(toolbar=True)
 
     df1 = pd.read_csv('/Users/pradumnkumar/Desktop/stocks/NSE_Equity_Futures_iEOD/2023/JAN/02JAN/NIFTY.txt')
     df1 = convert_df_in_ohlc(df1)
@@ -24,13 +24,6 @@ if __name__ == '__main__':
     chart.set(df1)
 
     chart.show()
-
-    print("Provide supports with spaces")
-    supports = map(float, input().strip().split())
-    for support in supports:
-        line = chart.create_line('Support_{}'.format(support))
-        support_data = pd.DataFrame({'time':df1['date'], 'Support_{}'.format(support): support})
-        line.set(support_data)
     
     for i, series in df2.iterrows():
         bar = pd.Series(dtype='float64')
